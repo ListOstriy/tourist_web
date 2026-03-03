@@ -12,6 +12,11 @@ body {
     color: #fff
 }
 
+.btn {
+    width: 80%;
+    height: 20px;
+}
+
 /* 
 @media (max-width: 1200px) {
     .menu {
