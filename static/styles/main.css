@@ -1,0 +1,19 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.menu {
+    position: fixed;
+    width: 30%;
+    max-width: 360px;
+    height: 100%;
+    background-color: #CCCCFF;
+}
+
+/* 
+@media (max-width: 1200px) {
+    .menu {
+        width: 30%;
+    }
+} */
