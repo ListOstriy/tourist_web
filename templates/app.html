@@ -8,9 +8,37 @@
 </head>
 <body>
     <div class="search"></div>
-    <div class="menu"></div>
+    <div class="menu">
+        <div class="navigation">
+            <a href="#" class="active">Ежедневник</a>
+            <a href="#">Календарь</a>
+            <a href="#">Карта</a>
+            <a href="#">Цели и достижения</a>
+            <a href="#">Рекомендации</a>
+        </div>
+        <div class="profile">
+            <a href="#">Никнейм</a>
+            <div class="avatar"></div>
+        </div>
+    </div>
     <div class="content">
+        <input type="search" name="search">
         {% block content %}Контент{% endblock content %}
+    </div>
+    <div class="dailyplanner">
+        <div class="baza">
+            <div class="one">
+
+                <div class="notice1">
+                    <a href="#" class="heading">Заголовок</a>
+                    <a href="#">✓</a>
+                </div>
+            </div>
+            <div class="two">
+                <div class="notice2"></div>
+                <a href="#" class="heading">Заголовок</a>
+            </div>
+        </div>
     </div>
 </body>
 </html>
