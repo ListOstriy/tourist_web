@@ -10,8 +10,8 @@
     <div class="search"></div>
     <div class="menu">
         <div class="navigation">
-            <a href="#" class="active">Ежедневник</a>
-            <a href="#">Календарь</a>
+            <a href="/" {% if active_menu == 'diary' %}class="active"{% endif %}>Ежедневник</a>
+            <a href="calendar" {% if active_menu == 'calendar' %}class="active"{% endif %}>Календарь</a>
             <a href="#">Карта</a>
             <a href="#">Цели и достижения</a>
             <a href="#">Рекомендации</a>
@@ -22,28 +22,8 @@
         </div>
     </div>
     <div class="content">
-        <input type="search" name="search">
+        <input type="search" name="search" placeholder="Поиск...">
         {% block content %}Контент{% endblock content %}
-        <p>Поиск...</p>
-    </div>
-    <div class="dailyplanner">
-        <div class="plus">
-            <img src="{{ url_for('static', filename='vectors/plus.svg') }}" alt="">
-        </div>
-        <div class="baza">
-            <div class="diary">
-                <div class="notice active">
-                </div>
-                <a href="#" class="heading">Заголовок</a>
-                <a href="#" class="txt">текст</a>
-            </div>
-            <div class="diary">
-                <div class="notice">
-                </div>
-                <a href="#" class="heading">Заголовок</a>
-                <a href="#" class="txt">текст</a>
-            </div>
-        </div>
     </div>
 </body>
 </html>

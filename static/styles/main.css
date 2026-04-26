@@ -127,9 +127,8 @@ body {
 
 .baza {
     position: absolute;
-    width: calc(100% - 360px);
+    width: 100%;
     top: 126px;
-    left: 360px;
 }
 
 .diary {
@@ -197,6 +196,23 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+.calendar {
+    background-color: #E5E5E5;
+    position: fixed;
+    width: 1904px;
+    height: 1050px;
+    left: 513px;
+    top: 180px;
+}
+
+.calendar p1 {
+    position: fixed;
+    font-family: 64px;
+    left: 801px;
+    top: 27px;
+}
+
 /* 
 @media (max-width: 1200px) {
     .menu {

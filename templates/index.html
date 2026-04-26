@@ -3,7 +3,23 @@
 {% block title %}Ежедневник Туриста - index{% endblock title %}
 
 {% block content %}
-
-
-        
+<div class="dailyplanner">
+    <div class="plus">
+        <img src="{{ url_for('static', filename='vectors/plus.svg') }}" alt="">
+    </div>
+    <div class="baza">
+        <div class="diary">
+            <div class="notice active">
+            </div>
+            <a href="#" class="heading">Заголовок</a>
+            <a href="#" class="txt">текст</a>
+        </div>
+        <div class="diary">
+            <div class="notice">
+            </div>
+            <a href="#" class="heading">Заголовок</a>
+            <a href="#" class="txt">текст</a>
+        </div>
+    </div>
+</div>
 {% endblock content %}

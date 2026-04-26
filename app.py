@@ -53,7 +53,13 @@ db.create_tables([Users, Diary, Budget, Achievement])
 @app.route('/')
 def index_page():
     if session.get("nickname"):
-        return render_template('index.html')
+        return render_template('index.html', active_menu="diary")
+    return redirect('/auth')
+
+@app.route('/calendar')
+def calendar_page():
+    if session.get("nickname"):
+        return render_template('calendar.html', active_menu="calendar")
     return redirect('/auth')
 
 @app.route("/registration")
