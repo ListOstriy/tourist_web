@@ -24,19 +24,24 @@
     <div class="content">
         <input type="search" name="search">
         {% block content %}Контент{% endblock content %}
+        <p>Поиск...</p>
     </div>
     <div class="dailyplanner">
+        <div class="plus">
+            <a href="#" class="pl">+</a>
+        </div>
         <div class="baza">
-            <div class="one">
-
-                <div class="notice1">
-                    <a href="#" class="heading">Заголовок</a>
-                    <a href="#">✓</a>
+            <div class="diary">
+                <div class="notice active">
                 </div>
-            </div>
-            <div class="two">
-                <div class="notice2"></div>
                 <a href="#" class="heading">Заголовок</a>
+                <a href="#" class="txt">текст</a>
+            </div>
+            <div class="diary">
+                <div class="notice">
+                </div>
+                <a href="#" class="heading">Заголовок</a>
+                <a href="#" class="txt">текст</a>
             </div>
         </div>
     </div>

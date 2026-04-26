@@ -5,8 +5,8 @@ body {
 
 .menu {
     position: fixed;
-    width: 30%;
-    max-width: 360px;
+    width: 360px;
+    max-width: 60%;
     height: 100%;
     background-color: #CCCCFF;
     color: #fff
@@ -20,8 +20,8 @@ body {
 
 .menu .navigation {
     position: fixed;
-    width: 100%;
-    max-width: 360px;
+    width: 360px;
+    max-width: 50%;
     height: 575px;
     top: 300px;
 }
@@ -29,7 +29,7 @@ body {
 .menu .navigation a {
     display: flex;
     height: 75px;
-    width: 315px;
+    width: 100%;
     margin: 20px auto;
 
     justify-content: center;
@@ -41,6 +41,7 @@ body {
     font-size: 24px;
     color: #fff;
     text-decoration: none;
+    max-width: 315px;
 }
 
 .menu .navigation a:hover {
@@ -53,7 +54,7 @@ body {
 }
 
 .profile {
-    background-color: #CCCCFF;
+    background-color: #ffffff00;
     height: 110px;
     width: 100%;
     bottom: 0px;
@@ -70,12 +71,12 @@ body {
     bottom: 7px;
     border-radius: 100px;
     position: fixed;
-    width: 20%;
-    max-width: 95px;
+    max-width: 10%;
 }
 
 .menu .profile a {
     color: #000000;
+    font-width: 20%;
     left: 137px;
     bottom: 40px;
     font-size: 24px;
@@ -83,10 +84,12 @@ body {
     font-family: Inter, Segoe WPC, Segoe UI, sans-serif;
     text-decoration: none;
     position: fixed;
+    font-size: max 106px;
 }
 
 .content {
-    position: absolute;
+    background-color: #ffffff00;
+    position: fixed;
     left: 360px;
     width: calc(100% - 360px);
 }
@@ -94,12 +97,24 @@ body {
 .content input[type="search"] {
     background-color: #E5E5E5;
     color: #B2B2B2;
-    position: relative;
-    width: 80%;
+    position: fixed;
+    width: 1403px;
     margin: 20px 10%;
     height: 30px;
     font-size: 16px;
     border-radius: 20px;
+    border: 0px;
+}
+
+.content p {
+    position: fixed;
+    color: #888888;
+    width: 100px;
+    font-size: 24px;
+    bottom: 1235px;
+    left: 630px;
+    font-family: Inter, Segoe WPC, Segoe UI, sans-serif;
+    text-decoration: none;
 }
 
 .menu .profile a:hover {
@@ -111,80 +126,82 @@ body {
 }
 
 .baza {
-    position: fixed;
-    height: 405px;
-    width: 2064px;
-    background-color: #ffffff;
-    top: 162px;
-    left: 417px;
+    position: absolute;
+    width: calc(100% - 360px);
+    top: 126px;
+    left: 360px;
 }
 
-.one {
-    position: fixed;
+.diary {
+    position: relative;
     height: 183px;
-    width: 2064px;
+    width: 90%;
     background-color: #E5E5E5;
-    top: 162px;
-    left: 417px;
+    margin: 50px 5%;
     border-radius: 20px;
+    transition: transform 0.5s;
 }
 
-.notice1 {
-    position: fixed;
-    height: 35px;
-    width: 35px;
+.diary .notice.active {
     background-color: #7070FF;
-    border-radius: 100px;
-    top: 288px;
-    right: 100px;
-}
-
-.notice1 a {
-    position: fixed;
+    content: "✓";
     color: #fff;
     font-size: 24px;
     text-decoration: none;
-    right: 109px;
 }
 
-.notice1 a.heading {
-    position: fixed;
+.diary a.heading {
+    position: absolute;
     font-size: 32px;
     color: #000000;
-    top: 170px;
-    left: 444px;
+    top: 10px;
+    left: 20px;
     text-decoration: none;
     font-family: Inter, Segoe WPC, Segoe UI, sans-serif;
 }
 
-.two {
-    position: fixed;
-    height: 183px;
-    width: 2064px;
-    background-color: #E5E5E5;
-    top: 382px;
-    left: 417px;
-    border-radius: 20px;
-}
-
-.notice2 {
-    position: fixed;
+.diary .notice {
+    position: absolute;
     height: 35px;
     width: 35px;
-    background-color: #CCCCCC;
+    background-color: #9c9c9c;
     border-radius: 100px;
-    top: 508px;
-    right: 100px;
+    bottom: 30px;
+    right: 30px;
 }
 
-.notice1 a.heading2 {
-    position: fixed;
-    font-size: 32px;
-    color: #000000;
-    top: 340px;
-    left: 444px;
-    text-decoration: none;
+.diary a.txt {
+    position: absolute;
+    font-size: 24px;
+    color: #626262;
+    top: 52px;
+    left: 20px;
     font-family: Inter, Segoe WPC, Segoe UI, sans-serif;
+    text-decoration: none;
+}
+
+.diary:hover {
+    transform: scale(101%);
+}
+
+.plus {
+    position: fixed;
+    background-color: #CCCCFF;
+    height: 95px;
+    width: 95px;
+    top: 1175px;
+    left: 2434px;
+    border-radius: 100px;
+}
+
+.plus a {
+    position: fixed;
+    font-size: 64px;
+    top: 1180px;
+    left: 2463px;
+    color: #fff;
+    font-family: Inter, Segoe WPC, Segoe UI, sans-serif;
+    text-decoration: none;
 }
 
 /* 
@@ -192,4 +209,6 @@ body {
     .menu {
         width: 30%;
     }
-} */
+} 
+
+*/
