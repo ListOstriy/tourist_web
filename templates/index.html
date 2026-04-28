@@ -4,11 +4,23 @@
 
 {% block content %}
 <div class="dailyplanner">
-    <div class="plus">
-        <img src="{{ url_for('static', filename='vectors/plus.svg') }}" alt="">
-    </div>
+    <a href="/new_diary">
+        <div class="plus">
+            <img src="{{ url_for('static', filename='vectors/plus.svg') }}" alt="">
+        </div>
+    </a>
     <div class="baza">
-        <div class="diary">
+        {% for diary in all_diary %}
+            <div class="diary">
+                <a href="">
+                    <div class="notice {% if diary.done %}active{% endif %}"></div>
+                </a>
+                
+                <a href="/diary/{{ diary.id }}" class="heading">{{ diary.title }}</a>
+                <a href="/diary/{{ diary.id }}" class="txt">{{ diary.text }}</a>
+            </div>
+        {% endfor %}
+        <!-- <div class="diary">
             <div class="notice active">
             </div>
             <a href="#" class="heading">Заголовок</a>
@@ -19,7 +31,7 @@
             </div>
             <a href="#" class="heading">Заголовок</a>
             <a href="#" class="txt">текст</a>
-        </div>
+        </div> -->
     </div>
 </div>
 {% endblock content %}

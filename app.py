@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, flash, session
 from werkzeug.security import generate_password_hash, check_password_hash
 from peewee import *
+from datetime import *
 
 app = Flask(__name__)
 app.secret_key = ",sf';lk,4[po6i2046-0lx,ztoit0-490=084630-2d"
@@ -18,11 +19,11 @@ class Users(Model):
 
 class Diary(Model):
     title = CharField()
-    text = CharField()
+    text = TextField()
     author = ForeignKeyField(Users, backref="diaries")
     time = DateTimeField()
-    favorite = BooleanField()
-    done = BooleanField()
+    favorite = BooleanField(default=False)
+    done = BooleanField(default=False)
     
     class Meta:
         database = db
@@ -41,7 +42,7 @@ class Achievement(Model):
     author = ForeignKeyField(Users, backref="achievs")
     title = CharField()
     description = CharField()
-    completed = BooleanField()
+    completed = BooleanField(default=False)
     when_completed = DateField()
 
     class Meta:
@@ -49,11 +50,58 @@ class Achievement(Model):
 
 db.create_tables([Users, Diary, Budget, Achievement])
 
+@app.route('/new_diary', methods=["GET"])
+def new_diary_page():
+    if session.get("nickname"):
+        return render_template('edit.html', active_menu="diary")
+    return redirect('/auth')
+
+@app.route('/diary/<int:id>', methods=["GET"])
+def diary_page(id):
+    if session.get("nickname"):
+        diary = Diary.get(Diary.id == id)
+        return render_template('edit.html', active_menu="diary", title=diary.title, text=diary.text)
+    return redirect('/auth')
+
+@app.route('/diary/<int:id>', methods=["POST"])
+def edit_diary(id):
+    if session.get("nickname"):
+        diary = Diary.get(Diary.id == id)
+        if diary.author != Users.get(Users.nickname == session.get("nickname")):
+            flash("Ошибка. Вы не являетесь автором этой записи")
+            return redirect("/")
+        diary.title = request.form["title"]
+        diary.text = request.form["text"]
+        diary.save()
+        return redirect("/")
+
+@app.route('/new_diary', methods=["POST"])
+def new_diary():
+    if session.get("nickname"):
+        title = request.form["title"]
+        text = request.form["text"]
+        if len(text) == 0 or len(title) == 0:
+            flash("Ошибка. Заполните все поля...")
+            return redirect("/new_diary")
+        try:
+            author = Users.get(Users.nickname == session.get('nickname'))
+        except:
+            flash("Ошибка. Повторите позже...")
+            return redirect("/new_diary")
+        diary = Diary.create(
+            title=title,
+            text=text,
+            author=author,
+            time=datetime.now()
+        )
+        return redirect("/")
+    return redirect('/auth')
 
 @app.route('/')
 def index_page():
     if session.get("nickname"):
-        return render_template('index.html', active_menu="diary")
+        user = Users.get(Users.nickname == session.get("nickname"))
+        return render_template('index.html', active_menu="diary", all_diary=user.diaries)
     return redirect('/auth')
 
 @app.route('/calendar')

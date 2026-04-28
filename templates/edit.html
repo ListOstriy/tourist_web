@@ -1,0 +1,39 @@
+{% extends "app.html" %}
+
+{% block title %}Заметка{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/edit.css') }}">
+<div class="edit_container">
+    <form method="post">
+        <div class="title_container">
+            <input name="title" type="text" placeholder="Заголовок" class="title" required value="{{ title }}">
+        </div>
+
+        <div class="text_container">
+            <textarea name="text" placeholder="Текст" class="text" required>{{ text }}</textarea>
+        </div>
+        
+
+        <div class="buttons">
+            <div class="text_buttons">
+                <button class="text_btn"><b>B</b></button>
+                <button class="text_btn"><i>I</i></button>
+                <button class="text_btn"><u>U</u></button>
+            </div>
+            <div class="ne_text_buttons">
+                <button class="icon_btn">
+                    <img src="{{ url_for('static', filename='vectors/clock.svg') }}" alt="">
+                </button>
+                <button class="icon_btn">
+                    <img src="{{ url_for('static', filename='vectors/coins.svg') }}" alt="">
+                </button>
+                <button class="icon_btn">
+                    <img src="{{ url_for('static', filename='vectors/star.svg') }}" alt="">
+                </button>
+                <input type="submit" value="Сохранить" class="save_btn">
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
