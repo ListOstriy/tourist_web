@@ -1,0 +1,59 @@
+.cards_container
+{
+    position: absolute;
+    margin: 9vh 0 0 3vh;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.achievement
+{
+    width: 18vh;
+    height: 25vh;
+    background: #EAEAEA;
+    border-radius: 18px;
+    margin: 0.7%;
+    position: relative;
+}
+.achievement.completed
+{
+    width: 18vh;
+    height: 22vh;
+    background: #E3E3FF;
+    border-radius: 10px;
+    margin: 10px;
+    position: relative;
+}
+
+.card_title{
+    margin: 7% 2% 0 2%;
+    border-bottom: 1px solid #6b6b6b;
+}
+
+
+.plus{
+    border: 1px solid #38325330;
+    z-index: 1;
+    bottom: 5%;
+    right: 2%;
+    box-shadow: 0 6px 10px #38325399;
+}
+
+a{
+    color: #000000;
+    text-decoration: none;        
+}
+
+a.card_title{
+    font-width: 20%;
+    font-size: 24px;
+    width: 106px;
+    font-family: Inter, Segoe WPC, Segoe UI, sans-serif;
+}
+a.card_description{
+    font-width: 20%;
+    font-size: 24px;
+    width: 106px;
+    font-family: Inter, Segoe WPC, Segoe UI, sans-serif;
+}

@@ -12,12 +12,12 @@
         <div class="navigation">
             <a href="/" {% if active_menu == 'diary' %}class="active"{% endif %}>Ежедневник</a>
             <a href="calendar" {% if active_menu == 'calendar' %}class="active"{% endif %}>Календарь</a>
-            <a href="#">Карта</a>
-            <a href="#">Цели и достижения</a>
+            <a href="map" {% if active_menu == 'map' %}class="active"{% endif %}>Карта</a>
+            <a href="goals" {% if active_menu == 'goals' %}class="active"{% endif %}>Цели и достижения</a>
             <a href="#">Рекомендации</a>
         </div>
         <div class="profile">
-            <a href="#">Никнейм</a>
+            <a href="#">{{ session['nickname'] }}</a>
             <div class="avatar"></div>
         </div>
     </div>

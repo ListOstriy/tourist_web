@@ -1,8 +1,10 @@
 {% extends "app.html" %}
 
-{% block title %}Ежедневник Туриста - index{% endblock title %}
+{% block title %}Ежедневник Туриста{% endblock title %}
 
 {% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/index.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/adaptive.css') }}">
 <div class="dailyplanner">
     <a href="/new_diary">
         <div class="plus">
@@ -12,12 +14,14 @@
     <div class="baza">
         {% for diary in all_diary %}
             <div class="diary">
-                <a href="">
-                    <div class="notice {% if diary.done %}active{% endif %}"></div>
+                <a href="/done_diary/{{ diary.id }}" class="status-link">
+                    <div class="notice {% if diary.done %}active{% endif %}">
+                        <img src="{{ url_for('static', filename='vectors/checkmark.svg') }}" alt="">
+                    </div>
                 </a>
-                
-                <a href="/diary/{{ diary.id }}" class="heading">{{ diary.title }}</a>
-                <a href="/diary/{{ diary.id }}" class="txt">{{ diary.text }}</a>
+                <a href="/diary/{{ diary.id }}" class="heading {% if diary.done %}done{% endif %}">{{ diary.title|truncate(30) }}</a>
+                <a href="/diary/{{ diary.id }}" class="edit_time {% if diary.done %}done{% endif %}">Ред: {{ diary.time.strftime('%d.%m %H:%M') }}</a>
+                <a href="/diary/{{ diary.id }}" class="txt {% if diary.done %}done{% endif %}">{{ diary.text }}</a>
             </div>
         {% endfor %}
         <!-- <div class="diary">

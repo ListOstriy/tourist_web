@@ -6,7 +6,10 @@ from datetime import *
 app = Flask(__name__)
 app.secret_key = ",sf';lk,4[po6i2046-0lx,ztoit0-490=084630-2d"
 
-db = SqliteDatabase('tourist.db')
+db = SqliteDatabase('tourist.db', pragmas={
+    'journal_mode': 'wal',
+    'busy_timeout': 5000
+})
 
 
 class Users(Model):
@@ -21,7 +24,7 @@ class Diary(Model):
     title = CharField()
     text = TextField()
     author = ForeignKeyField(Users, backref="diaries")
-    time = DateTimeField()
+    time = DateTimeField(default=datetime.now)
     favorite = BooleanField(default=False)
     done = BooleanField(default=False)
     
@@ -59,7 +62,13 @@ def new_diary_page():
 @app.route('/diary/<int:id>', methods=["GET"])
 def diary_page(id):
     if session.get("nickname"):
-        diary = Diary.get(Diary.id == id)
+        diary = Diary.get_or_none(Diary.id == id)
+        if diary is None:
+            flash("Такой страницы не существует.")
+            return redirect("/")
+        if diary.author.nickname != session.get("nickname"):
+            return redirect("/")
+
         return render_template('edit.html', active_menu="diary", title=diary.title, text=diary.text)
     return redirect('/auth')
 
@@ -72,6 +81,7 @@ def edit_diary(id):
             return redirect("/")
         diary.title = request.form["title"]
         diary.text = request.form["text"]
+        diary.time = datetime.now()
         diary.save()
         return redirect("/")
 
@@ -97,6 +107,16 @@ def new_diary():
         return redirect("/")
     return redirect('/auth')
 
+@app.route('/done_diary/<int:id>')
+def done_diary(id):
+    if session.get("nickname"):
+        diary = Diary.get(Diary.id == id)
+        diary.done = not diary.done 
+        diary.save()
+        return redirect("/")
+    return redirect('/auth')
+
+
 @app.route('/')
 def index_page():
     if session.get("nickname"):
@@ -109,6 +129,52 @@ def calendar_page():
     if session.get("nickname"):
         return render_template('calendar.html', active_menu="calendar")
     return redirect('/auth')
+
+
+@app.route('/map')
+def map_page():
+    if session.get("nickname"):
+        return render_template('map.html', active_menu="map")
+    return redirect('/auth')
+
+
+@app.route('/goals')
+def goals_page():
+    if session.get("nickname"):
+        user = Users.get(Users.nickname == session.get("nickname"))
+        all_achievement = user.achievs
+        return render_template('goals.html', active_menu="goals", all_achievement=all_achievement)
+    return redirect('/auth')
+
+@app.route('/new_achievement', methods=["GET"])
+def new_achievement_page():
+    if session.get("nickname"):
+        return render_template('edit_goal.html', active_menu="goals")
+    return redirect('/auth')
+
+
+@app.route('/new_achievement', methods=["POST"])
+def new_achievement():
+    if session.get("nickname"):
+        title = request.form["title"]
+        description = request.form["description"]
+        if len(description) == 0 or len(title) == 0:
+            flash("Ошибка. Заполните все поля...")
+            return redirect("/new_achievement")
+        try:
+            author = Users.get(Users.nickname == session.get('nickname'))
+        except:
+            flash("Ошибка. Повторите позже...")
+            return redirect("/new_achievement")
+        achievement = Achievement.create(
+            title=title,
+            description=description,
+            author=author,
+            when_completed = datetime.now()
+        )
+        return redirect("/goals")
+    return redirect('/auth')
+
 
 @app.route("/registration")
 def registration_page():
@@ -142,10 +208,12 @@ def registration():
         flash("Ошибка сервера")
         return redirect("/registration")
 
+
 @app.route("/logout")
 def logout():
     session.clear()
     return redirect("/")
+
 
 @app.route("/auth")
 def auth_page():

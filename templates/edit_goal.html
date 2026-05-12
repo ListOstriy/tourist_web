@@ -1,0 +1,17 @@
+{% extends "app.html" %}
+
+{% block title %}Цели и достижения{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/edit_goal.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/adaptive.css') }}">
+<div class="edit_container">
+    <form method="post" autocomplete="off">
+        <div class="card">
+            <input name="title" type="text" placeholder="Название" class="title" required value="{{ title }}">
+            <input name="description" type="text" placeholder="Описание" class="description" required value="{{ description }}">
+            <input type="submit" value="Сохранить" class="save_btn">
+        </div>
+    </form>
+</div>
+{% endblock %}

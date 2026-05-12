@@ -1,0 +1,25 @@
+{% extends "app.html" %}
+
+{% block title %}Цели и достижения{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/goals.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/adaptive.css') }}">
+<div class="cards_container">
+    {% for achievement in all_achievement %}
+        <div class="achievement">
+            <div class="card_title">
+                <a href="/edit_goal/{{ achievement.id }}" class="title {% if achievement.completed %}completed{% endif %}">{{ achievement.title|truncate(30) }}</a>
+            </div>
+            <div class="card_description">
+                <a href="/edit_goal/{{ achievement.id }}" class="description {% if achievement.completed %}completed{% endif %}">{{ achievement.description|truncate(30) }}</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+<a href="/new_achievement">
+    <div class="plus">
+        <img src="{{ url_for('static', filename='vectors/plus.svg') }}" alt="">
+    </div>
+</a>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "app.html" %}
+{% block title %}Карта{% endblock %}
+
+{% block content %}
+<script src="https://api-maps.yandex.ru/2.1/?apikey=4b34b938-3279-4f2b-b120-78962fff9bc5&lang=ru_RU&load=package.full" type="text/javascript">
+    async
+    onload="initMap()"
+</script>
+<script src="{{ url_for('static', filename='js/map.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/map.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/adaptive.css') }}">
+
+<div id="map" class="map-container"></div>
+
+{% endblock %}

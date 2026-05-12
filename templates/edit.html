@@ -4,8 +4,9 @@
 
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='styles/edit.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/adaptive.css') }}">
 <div class="edit_container">
-    <form method="post">
+    <form method="post" autocomplete="off">
         <div class="title_container">
             <input name="title" type="text" placeholder="Заголовок" class="title" required value="{{ title }}">
         </div>
