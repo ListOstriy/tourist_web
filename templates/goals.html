@@ -14,6 +14,11 @@
             <div class="card_description">
                 <a href="/edit_goal/{{ achievement.id }}" class="description {% if achievement.completed %}completed{% endif %}">{{ achievement.description|truncate(30) }}</a>
             </div>
+            <a href="/done_achievement/{{ achievement.id }}" class="status-link">
+                <div class="notice {% if achievement.completed %}active{% endif %}">
+                    <img src="{{ url_for('static', filename='vectors/checkmark.svg') }}" alt="">
+                </div>
+            </a>
         </div>
     {% endfor %}
 </div>

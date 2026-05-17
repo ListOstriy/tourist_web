@@ -27,10 +27,33 @@
 }
 
 .card_title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 7% 2% 0 2%;
     border-bottom: 1px solid #6b6b6b;
 }
 
+.card_description{
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+
+.card_title a{
+    font-size: 24px;
+    margin: 10px 10px 0 0;
+    color: #2c2c2c;
+    font-family: Inter, Segoe WPC, Segoe UI, sans-serif;
+    text-decoration: none;
+}
+.card_description a{
+    font-size: 18px;
+    margin: 10px 10px 0 0;
+    color: #2c2c2c;
+    font-family: Inter, Segoe WPC, Segoe UI, sans-serif;
+    text-decoration: none;
+}
 
 .plus{
     border: 1px solid #38325330;
@@ -56,4 +79,38 @@ a.card_description{
     font-size: 24px;
     width: 106px;
     font-family: Inter, Segoe WPC, Segoe UI, sans-serif;
+}
+
+.notice{
+    position: absolute;
+    height: 35px;
+    width: 35px;
+    background-color: #9c9c9c;
+    border-radius: 100px;
+    bottom: 30px;
+    right: 30px;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.notice.active{
+    background-color: #7070FF;
+    color: #fff;
+    font-size: 24px;
+    text-decoration: none;
+    z-index: 10;
+}
+
+.notice img{
+    width: 88%;
+    height: 88%;
+}
+
+.achievement a.completed, 
+.achievement a.completed{
+    text-decoration: line-through;
+    color: #888888;
+    font-style: italic;
 }

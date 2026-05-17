@@ -176,6 +176,16 @@ def new_achievement():
     return redirect('/auth')
 
 
+@app.route('/done_achievement/<int:id>')
+def done_achievement(id):
+    if session.get("nickname"):
+        achievement = Achievement.get(Achievement.id == id)
+        achievement.completed = not achievement.completed
+        achievement.save()
+        return redirect("/goals")
+    return redirect('/auth')
+
+
 @app.route("/registration")
 def registration_page():
     if session.get("nickname"):
